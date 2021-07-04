@@ -1,0 +1,18 @@
+language: python
+python:
+  - 3.6
+
+# Update pip to the latest version
+before_install:
+  - python --version
+  - pip install -U pip
+
+install:
+  - pip install -r requirements.txt
+
+deploy:
+  provider: pypi
+  username: "final-assignment"
+  password: "pypi-AgEIcHlwaS5vcmcCJGM0NTUxYTJhLThhMDEtNGJlNy04OWE4LTU2MDA4MGY5NmNiMAACSHsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJmaW5hbC1hc3NpZ25tZW50LTQxMDk1MiJdfSwgInZlcnNpb24iOiAxfQAABiD09Yhp_5OwKyObZwjOPMCDHjlu0OtqgBSh9WNWoJiN_g"
+  on:
+    branch: master
