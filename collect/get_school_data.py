@@ -43,6 +43,19 @@ def get_school_data(address: str, communicats: bool = True):
     initial_size = len(df)
 
     df['teachers'] = df['Nauczyciele pełnozatrudnieni'] + df['Nauczyciele niepełnozatrudnieni (w etatach)']
+    df['code'] = df['woj'] + df['pow'] + df['gm']
+
+    if communicats:
+        print('preparing teritorial code...')
+
+    # finishing the teritorial code
+    for i in range(len(df)):
+        if df.iloc[i]['Typ gminy'] == 'M':
+            df.at[i, 'code'] += '1'
+        elif df.iloc[i]['Typ gminy'] == 'Gm':
+            df.at[i, 'code'] += '2'
+        elif df.iloc[i]['Typ gminy'] == 'M-Gm':
+            df.at[i, 'code'] += '3'
 
     df = df.drop(columns=['woj', 'pow', 'gm', 'Nauczyciele pełnozatrudnieni', 'Nauczyciele niepełnozatrudnieni (w etatach)'])
 
@@ -77,6 +90,8 @@ def get_school_data(address: str, communicats: bool = True):
     # unafilliated schools with no teachers (potential errors in data)
     err = len(df.loc[df['teachers'] == 0])
     df = df.drop(df.loc[df['teachers'] == 0].index)
+
+    df = df.drop(columns=['Nr RSPO jednostki sprawozdawczej'])
 
     inf = open('gsd_summary.txt', 'w+')
     inf.write(f"Collecting school data from the address: {address} following decisions were made:\n"
