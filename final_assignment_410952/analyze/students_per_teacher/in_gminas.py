@@ -1,4 +1,4 @@
-from analyze.students_per_teacher.get_basic_statistics import get_basic_statistics
+from final_assignment_410952.analyze.students_per_teacher.get_basic_statistics import get_basic_statistics
 import pandas as pd
 
 

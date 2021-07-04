@@ -1,5 +1,5 @@
-from analyze.students_per_teacher.in_gminas import in_gminas
-from analyze.students_per_teacher.in_types import in_types
+from final_assignment_410952.analyze.students_per_teacher.in_gminas import in_gminas
+from final_assignment_410952.analyze.students_per_teacher.in_types import in_types
 import pandas as pd
 
 def get_students_per_teacher(df: pd.DataFrame):
